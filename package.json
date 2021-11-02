@@ -1,0 +1,45 @@
+{
+  "name": "@mika215/holidaystool",
+  "version": "1.0.1",
+  "description": "Holidays generator dependency tool for countries of the world",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "holidays",
+    "holidates",
+    "global holidates",
+    "national holidays",
+    "public holidays",
+    "michael tesfay",
+    "becode",
+    "hyf"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mika215/holidaystool-cli.git"
+  },
+  "author": "Michael Tesfay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mika215/holidaystool-cli/issues"
+  },
+  "homepage": "https://github.com/Mika215/holidaystool-cli#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "chalk": "^4.1.2",
+    "commander": "^8.3.0",
+    "country-list": "^2.2.0",
+    "express": "^4.17.1",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.0",
+    "ora": "^6.0.1"
+  },
+  "bin": {
+    "holidaystool": "index.js"
+  }
+}
