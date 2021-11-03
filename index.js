@@ -19,7 +19,7 @@ const filterCC = async () => {
     );
     const countryList = await res.data;
     for (let country of countryList) {
-      if (country.name === process.argv[2]) {
+      if (country.name.toLowerCase() === process.argv[2].toLowerCase()) {
         result = country.countryCode;
         match = true;
         return result;
@@ -28,8 +28,6 @@ const filterCC = async () => {
           process.argv[2]
         )} in our data base!`;
         match = false;
-      
-        
       }
     }
     console.log(result);
@@ -38,35 +36,31 @@ const filterCC = async () => {
   }
 };
 
-
 const getHolidays = async (inquiredCountry) => {
   const holidayURL = "https://date.nager.at/api/v3/PublicHolidays";
   try {
-   
     const inquiredCC = await filterCC();
-    if(inquiredCC){
-
-    
-
-    const result = await axios.get(
-      `${holidayURL}/${currentYear}/${inquiredCC}`
-    );
-    const displayUser = result.data;
-    const header = `Country Name: ${chalk.green.bold(
-      inquiredCountry
-    )}\nCountry Code: ${chalk.yellow.bold(
-      inquiredCC
-    )}\nCurrent Year: ${chalk.red(
-      currentYear
-    )}\nAnnual Holidays${chalk.green.bold("↓↓")}\n`;
-    console.log(header);
-    displayUser.forEach((element) => {
-      console.log(`${element.name}\n${element.date}`);
-    });
-  }else{
-  return
-  }
-
+    if (inquiredCC) {
+      const result = await axios.get(
+        `${holidayURL}/${currentYear}/${inquiredCC}`
+      );
+      const displayUser = result.data;
+      //Even if the user pass a country name with lowerCase this methode converts the first later into upperCase and concatinates the second slice in a lowercase
+      const header = `Country Name: ${chalk.green.bold(
+        inquiredCountry.charAt(0).toUpperCase() +
+          inquiredCountry.slice(1).toLowerCase()
+      )}\nCountry Code: ${chalk.yellow.bold(
+        inquiredCC
+      )}\nCurrent Year: ${chalk.green(
+        currentYear
+      )}\nAnnual Holidays ${chalk.green.bold("↓↓↓")}\n`;
+      console.log(header);
+      displayUser.forEach((element) => {
+        console.log(`${chalk.yellow.bold(element.name)}\n${element.date}`);
+      });
+    } else {
+      return;
+    }
   } catch (err) {
     console.log(err);
   }
@@ -89,5 +83,3 @@ const getUserInquiery = async () => {
   }
 };
 getUserInquiery();
-
-// getHolidays();

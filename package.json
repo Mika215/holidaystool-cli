@@ -1,6 +1,6 @@
 {
   "name": "@mika215/holidaystool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Holidays generator dependency tool for countries of the world",
   "main": "index.js",
   "publishConfig": {
